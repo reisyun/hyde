@@ -1,0 +1,16 @@
+[
+  {
+    "id": "6c8bbc40-2ab4-4a62-ab15-330441aa14eb",
+    "name": "test",
+    "email": "test@loas.io",
+    "profile": {
+      "shortBio": "R",
+      "avatar": "https://bit.ly/3GNfL6r",
+      "gender": "MALE",
+      "language": "KOREAN"
+    },
+    "createdAt": "2021-11-13T16:45:57.564Z",
+    "updatedAt": "2021-11-13T16:45:57.564Z",
+    "removedAt": null
+  }
+]

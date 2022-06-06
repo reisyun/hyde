@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bf800e4b-f778-470b-98a2-4e2c1ddcc9d2",
+    "ownerId": "6c8bbc40-2ab4-4a62-ab15-330441aa14eb",
+    "title": "동그라미",
+    "description": null,
+    "image": "https://bit.ly/3dVZf7z",
+    "views": 123,
+    "createdAt": "2021-11-13T16:45:57.564Z",
+    "updatedAt": "2021-11-13T16:45:57.564Z",
+    "removedAt": null
+  },
+  {
+    "id": "1694a2aa-7a20-4480-b5d0-1f0a6924ac16",
+    "ownerId": "6c8bbc40-2ab4-4a62-ab15-330441aa14eb",
+    "title": "선물",
+    "description": "백예린 앨범 수록곡",
+    "image": "https://bit.ly/3IUej3T",
+    "views": 123,
+    "createdAt": "2021-11-13T16:45:57.564Z",
+    "updatedAt": "2021-11-13T16:45:57.564Z",
+    "removedAt": null
+  }
+]
