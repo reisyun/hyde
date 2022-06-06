@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hyde/styles/colors.dart';
 import 'package:hyde/widgets/atoms/text.dart';
 
-class LibraryItem extends StatelessWidget {
+class CardItem extends StatelessWidget {
   final String name;
 
   final String image;
 
   final VoidCallback? onPressed;
 
-  const LibraryItem({
+  const CardItem({
     required this.name,
     required this.image,
     this.onPressed,
