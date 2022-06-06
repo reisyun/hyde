@@ -16,7 +16,7 @@ class HydeFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: BrandColors.secondary,
+      backgroundColor: BrandColors.secondary.withOpacity(0.4),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),

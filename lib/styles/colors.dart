@@ -23,9 +23,9 @@ class CommonColors {
 }
 
 class BrandColors {
-  static const Color primary = Color(0xFF8075FF);
+  static const Color primary = Color(0xFF8F85FF);
 
-  static const Color secondary = Color(0xFF46628A);
+  static const Color secondary = Color(0xFF6F8EB9);
 }
 
 class BackgroundColors {
