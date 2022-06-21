@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hyde/utils/show_bottom_sheet.dart';
-import 'package:hyde/widgets/atoms/bottom_sheet.dart';
-import 'package:hyde/widgets/atoms/icon.dart';
 import 'package:hyde/widgets/molecules/media_item.dart';
 
 class MediaList extends StatelessWidget {
-  final List<MediaListItem> items;
+  final List<MediaItem> items;
 
-  final List<Widget> Function(String mediaId)? options;
-
-  const MediaList(this.items, {this.options});
+  const MediaList(this.items);
 
   @override
   Widget build(BuildContext context) {
@@ -23,41 +18,18 @@ class MediaList extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         var item = items[index];
-        return MediaItem(
+        return MediaListItem(
           title: item.title,
           image: item.image,
-          trailing: _buildOptions(item.id),
           onPressed: item.onPressed,
         );
       },
     );
   }
-
-  /// 하단 시트에 아이템 선택
-  Widget? _buildOptions(String id) {
-    if (options == null) {
-      return null;
-    }
-
-    return InkWell(
-      onTap: () => showCustomBottomSheet(HydeBottomSheet(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: options!(id),
-        ),
-      )),
-      child: Container(
-        width: 40,
-        height: 40,
-        alignment: Alignment.centerRight,
-        child: const HydeIcon(FlutterRemix.more_2_line),
-      ),
-    );
-  }
 }
 
-/// Media List Item
-class MediaListItem {
+/// Interface media item
+class MediaItem {
   final String id;
 
   final String title;
@@ -66,7 +38,7 @@ class MediaListItem {
 
   final VoidCallback? onPressed;
 
-  const MediaListItem({
+  const MediaItem({
     required this.id,
     required this.title,
     required this.image,
