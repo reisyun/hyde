@@ -47,7 +47,7 @@ class Media {
   final String? coverImage;
 
   // 배너 이미지
-  final String? bannerImage;
+  final String bannerImage;
 
   // 방영 날짜
   final DateTime? startDate;
@@ -64,7 +64,7 @@ class Media {
     this.trailer,
     this.synopsis,
     this.coverImage,
-    this.bannerImage,
+    required this.bannerImage,
     this.startDate,
     this.endDate,
   });

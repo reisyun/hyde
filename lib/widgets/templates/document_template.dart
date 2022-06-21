@@ -145,7 +145,7 @@ class DocumentAppBar extends StatelessWidget {
         expandedTitleScale: 1,
         background: _buildBackground(
           title: media.title,
-          image: media.bannerImage ?? 'https://bit.ly/33AxUGh',
+          image: media.bannerImage,
           trailer: media.trailer,
         ),
       ),

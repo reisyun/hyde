@@ -41,7 +41,8 @@ class PageTemplate extends StatelessWidget {
             delegate: SliverChildListDelegate([
               Container(
                 alignment: Alignment.bottomLeft,
-                margin: const EdgeInsets.all(16),
+                margin: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(left: 16),
                 child: _buildTitle(title, FontSizes.display),
               ),
               ...contents,

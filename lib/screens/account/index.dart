@@ -56,10 +56,10 @@ class FavoriteSection extends StatelessWidget {
                 // [1] 감상한 상태가 아닌 미디어를 가져옴
                 .where((item) => item.status != HistoryStatus.COMPLETED)
                 // [2] 그 미디어를 포맷에 맞게 생성
-                .map((item) => MediaListItem(
+                .map((item) => MediaItem(
                       id: item.mediaId,
                       title: item.title,
-                      image: item.image!,
+                      image: item.image,
                       onPressed: () => _handleNavigateTo(item.mediaId),
                     ))
                 .toList(),

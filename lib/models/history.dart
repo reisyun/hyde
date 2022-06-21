@@ -22,7 +22,7 @@ class History {
 
   final String title;
 
-  final String? image;
+  final String image;
 
   HistoryStatus status;
 
@@ -35,7 +35,7 @@ class History {
     required this.id,
     required this.title,
     required this.status,
-    this.image,
+    required this.image,
     DateTime? createdAt,
     DateTime? updatedAt,
   })  : createdAt = DateTime.now(),

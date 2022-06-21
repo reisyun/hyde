@@ -18,7 +18,7 @@ class DiscoverScreen extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: MediaList(
             anilist
-                .map((item) => MediaListItem(
+                .map((item) => MediaItem(
                       id: item['id'],
                       title: item['title'],
                       image: item['image'],

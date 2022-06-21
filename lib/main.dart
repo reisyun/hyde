@@ -30,6 +30,7 @@ class Hyde extends StatelessWidget {
           backgroundColor: CommonColors.tag,
           labelStyle: TextStyle(color: FontColors.primary),
         ),
+        dividerColor: CommonColors.divider,
         scaffoldBackgroundColor: BackgroundColors.dep2,
         colorScheme: ColorScheme.fromSwatch(
           brightness: Brightness.dark,
