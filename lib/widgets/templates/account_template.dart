@@ -26,6 +26,11 @@ class AccountTemplate extends StatelessWidget {
               pinned: true,
               elevation: 0,
               expandedHeight: 240,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(16),
+                ),
+              ),
               flexibleSpace: _buildFlexibleSpace(
                 username,
                 CircleAvatar(
