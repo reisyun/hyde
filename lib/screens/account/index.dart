@@ -5,17 +5,22 @@ import 'package:hyde/controllers/history_controller.dart';
 import 'package:hyde/widgets/molecules/progress_indicator_with_label.dart';
 import 'package:hyde/widgets/organisms/library_field.dart';
 import 'package:hyde/widgets/organisms/media_list.dart';
+import 'package:hyde/widgets/templates/account_template.dart';
 
 class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const BouncingScrollPhysics(),
-      padding: EdgeInsets.zero,
-      children: [
-        CompletedSection(),
-        FavoriteSection(),
-      ],
+    return AccountTemplate(
+      username: 'viichan',
+      avatar: 'https://bit.ly/3LP3K2b',
+      content: ListView(
+        physics: const BouncingScrollPhysics(),
+        padding: EdgeInsets.zero,
+        children: [
+          CompletedSection(),
+          FavoriteSection(),
+        ],
+      ),
     );
   }
 }

@@ -38,20 +38,18 @@ class DocumentTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: _buildBottomAppBar(),
-      body: Container(
-        color: BackgroundColors.dep2,
-        child: CustomScrollView(
-          controller: scrollController,
-          slivers: [
-            DocumentAppBar(scrollController, media),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                DocumentInfo(media),
-                ...contents,
-              ]),
-            ),
-          ],
-        ),
+      backgroundColor: BackgroundColors.dep2,
+      body: CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          DocumentAppBar(scrollController, media),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              DocumentInfo(media),
+              ...contents,
+            ]),
+          ),
+        ],
       ),
     );
   }
