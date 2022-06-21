@@ -7,9 +7,9 @@ import 'package:hyde/widgets/atoms/icon.dart';
 import 'package:hyde/widgets/atoms/text.dart';
 import 'package:hyde/widgets/molecules/field.dart';
 import 'package:hyde/widgets/organisms/media_list.dart';
-import 'package:hyde/widgets/templates/library_template.dart';
+import 'package:hyde/widgets/templates/page_template.dart';
 
-class FavoriteScreen extends StatelessWidget {
+class CompletedScreen extends StatelessWidget {
   void _handleNavigateTo(String meidaId) {
     Get.toNamed('/document/$meidaId');
   }
@@ -18,15 +18,16 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HistoryController>();
 
-    return LibraryTemplate(
-      title: '보고싶은',
-      color: CommonColors.point_pink,
+    return PageTemplate(
+      title: '감상한',
       contents: [
         Field(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(16),
+          ),
           child: Obx(() => MediaList(
                 controller.histories
-                    .where((item) => item.status != HistoryStatus.COMPLETED)
+                    .where((item) => item.status == HistoryStatus.COMPLETED)
                     .map((item) => MediaListItem(
                           id: item.id,
                           title: item.title,
@@ -51,7 +52,7 @@ class FavoriteScreen extends StatelessWidget {
                       }),
                 ],
               )),
-        ),
+        )
       ],
     );
   }

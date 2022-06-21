@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hyde/widgets/atoms/icon.dart';
 import 'package:hyde/widgets/atoms/text.dart';
 import 'package:hyde/widgets/templates/layout.dart';
-import 'package:hyde/screens/home/account/index.dart';
-import 'package:hyde/screens/home/discover/index.dart';
+import 'package:hyde/screens/account/index.dart';
+import 'package:hyde/screens/discover/index.dart';
 
 class App extends StatelessWidget {
   @override

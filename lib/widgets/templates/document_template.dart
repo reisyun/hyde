@@ -43,20 +43,11 @@ class DocumentTemplate extends StatelessWidget {
         child: CustomScrollView(
           controller: scrollController,
           slivers: [
-            DocumentAppBar(
-              controller: scrollController,
-              image: media.bannerImage ?? 'https://bit.ly/33AxUGh',
-              title: media.title,
-            ),
+            DocumentAppBar(scrollController, media),
             SliverList(
               delegate: SliverChildListDelegate([
-                DocumentInfo(
-                  type: media.type,
-                  status: media.status,
-                  keywords: media.keywords,
-                  synopsis: media.synopsis,
-                ),
-                ...contents
+                DocumentInfo(media),
+                ...contents,
               ]),
             ),
           ],
@@ -80,7 +71,7 @@ class DocumentTemplate extends StatelessWidget {
           HydeButton(
             size: ButtonSizes.LARGE,
             icon: FlutterRemix.heart_line,
-            onPressed: () => _handleAddMedia(HistoryStatus.PLANNING),
+            onPressed: () => _handleAddMedia(HistoryStatus.COMPLETED),
           ),
           // Share
           HydeButton(
@@ -128,18 +119,9 @@ class DocumentTemplate extends StatelessWidget {
 class DocumentAppBar extends StatelessWidget {
   final ScrollController controller;
 
-  final String title;
+  final Media media;
 
-  final String? subtitle;
-
-  final String? image;
-
-  const DocumentAppBar({
-    required this.controller,
-    required this.title,
-    this.subtitle,
-    this.image,
-  });
+  const DocumentAppBar(this.controller, this.media);
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +133,7 @@ class DocumentAppBar extends StatelessWidget {
         scrollController: controller,
         startOffset: 240,
         child: HydeText(
-          title,
+          media.title,
           size: FontSizes.title,
           color: FontColors.primary,
           strong: true,
@@ -162,8 +144,9 @@ class DocumentAppBar extends StatelessWidget {
         collapseMode: CollapseMode.pin,
         expandedTitleScale: 1,
         background: _buildBackground(
-          title: title,
-          image: image,
+          title: media.title,
+          image: media.bannerImage ?? 'https://bit.ly/33AxUGh',
+          trailer: media.trailer,
         ),
       ),
     );
@@ -171,7 +154,8 @@ class DocumentAppBar extends StatelessWidget {
 
   Widget _buildBackground({
     required String title,
-    String? image,
+    required String image,
+    String? trailer,
   }) {
     return Stack(
       fit: StackFit.expand,
@@ -184,7 +168,9 @@ class DocumentAppBar extends StatelessWidget {
               colors: [BackgroundColors.dep1, Colors.transparent],
             ),
           ),
-          child: Image.network(image ?? '', fit: BoxFit.cover),
+          // TODO: 티저 또는 오프닝 영상 미리보기 구현하기
+          // 유튜브 영상 긁지 말고, OP 사이트 찾아보자!
+          child: Image.network(image, fit: BoxFit.cover),
         ),
         Positioned(
           left: 16,
@@ -204,20 +190,9 @@ class DocumentAppBar extends StatelessWidget {
 /// Document Info
 /// 작품의 간단한 정보 부분
 class DocumentInfo extends StatelessWidget {
-  final String type;
+  final Media media;
 
-  final MediaStatus status;
-
-  final List<String?> keywords;
-
-  final String? synopsis;
-
-  const DocumentInfo({
-    required this.type,
-    required this.status,
-    required this.keywords,
-    this.synopsis,
-  });
+  const DocumentInfo(this.media);
 
   @override
   Widget build(BuildContext context) {
@@ -230,9 +205,9 @@ class DocumentInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSynopsis(synopsis),
+          _buildSynopsis(media.synopsis),
           const SizedBox(height: 12),
-          _buildTags(type, status, keywords),
+          _buildKeywords(media.type, media.status, media.tags),
         ],
       ),
     );
@@ -258,8 +233,8 @@ class DocumentInfo extends StatelessWidget {
   }
 
   /// 작품 태그
-  Widget _buildTags(String type, MediaStatus status, List<String?> keywords) {
-    final tags = keywords
+  Widget _buildKeywords(String type, MediaStatus status, List<String?> tags) {
+    final keywords = tags
         .map((keyword) => HydeChip(
               name: keyword!,
               color: FontColors.secondary,
@@ -267,17 +242,17 @@ class DocumentInfo extends StatelessWidget {
             ))
         .toList();
 
-    tags.add(HydeChip(
+    keywords.add(HydeChip(
       name: type,
       color: BrandColors.primary,
       margin: const EdgeInsets.only(right: 8),
     ));
 
-    tags.add(HydeChip(
+    keywords.add(HydeChip(
       name: Media.getStatusName(status),
       color: BrandColors.primary,
     ));
 
-    return Row(children: tags);
+    return Row(children: keywords);
   }
 }

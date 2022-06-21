@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hyde/adapters/user.dart';
 import 'package:hyde/controllers/history_controller.dart';
 import 'package:hyde/styles/colors.dart';
 import 'package:hyde/screens/app.dart';
-import 'package:hyde/screens/library/completed.dart';
-import 'package:hyde/screens/library/favorite.dart';
+import 'package:hyde/screens/account/completed.dart';
 import 'package:hyde/screens/document/index.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserAdapter());
+
   runApp(Hyde());
 }
 
@@ -36,7 +40,6 @@ class Hyde extends StatelessWidget {
       getPages: [
         _getScreen('/@:username', App()),
         _getScreen('/@:username/completed', CompletedScreen()),
-        _getScreen('/@:username/favorite', FavoriteScreen()),
         _getScreen('/document/:id', DocumentScreen()),
       ],
     );

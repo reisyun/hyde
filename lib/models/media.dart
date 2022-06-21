@@ -35,7 +35,10 @@ class Media {
   final MediaStatus status;
 
   // 주요 태그
-  final List<String?> keywords;
+  final List<String?> tags;
+
+  // 예고편
+  final String? trailer;
 
   // 간략한 설명
   final String? synopsis;
@@ -57,7 +60,8 @@ class Media {
     required this.title,
     required this.type,
     required this.status,
-    required this.keywords,
+    required this.tags,
+    this.trailer,
     this.synopsis,
     this.coverImage,
     this.bannerImage,

@@ -48,8 +48,9 @@ class DocumentScreen extends StatelessWidget {
           id: snapshot.data['id'],
           title: snapshot.data['title'],
           type: snapshot.data['type'],
+          trailer: snapshot.data['trailer'],
           status: MediaStatus.values.byName(snapshot.data['status']),
-          keywords: List<String>.from(snapshot.data['genres']),
+          tags: List<String>.from(snapshot.data['genres']),
           bannerImage: snapshot.data['bannerImage'],
           synopsis: snapshot.data['synopsis'],
         );
