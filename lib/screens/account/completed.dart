@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hyde/controllers/history_controller.dart';
-import 'package:hyde/models/history.dart';
 import 'package:hyde/widgets/molecules/field.dart';
 import 'package:hyde/widgets/organisms/history_list.dart';
 import 'package:hyde/widgets/templates/page_template.dart';
@@ -24,15 +23,14 @@ class CompletedScreen extends StatelessWidget {
           ),
           child: Obx(() => HistoryList(
                 controller.histories
-                    .where((item) => item.status == HistoryStatus.COMPLETED)
                     .map((item) => HistoryItem(
                           id: item.id,
                           subtitle: "2022년 6월",
                           emotion: "joy",
-                          title: item.title,
-                          image: item.image,
+                          title: item.media.title,
+                          image: item.media.banner,
                           review: "오늘은 무엇일까",
-                          onPressed: () => _handleNavigateTo(item.mediaId),
+                          onPressed: () => _handleNavigateTo(item.media.id),
                         ))
                     .toList(),
               )),

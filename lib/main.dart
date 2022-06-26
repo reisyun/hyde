@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hyde/adapters/user.dart';
+import 'package:hyde/controllers/favorite_controller.dart';
 import 'package:hyde/controllers/history_controller.dart';
 import 'package:hyde/styles/colors.dart';
 import 'package:hyde/screens/app.dart';
@@ -9,9 +8,6 @@ import 'package:hyde/screens/account/completed.dart';
 import 'package:hyde/screens/document/index.dart';
 
 void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(UserAdapter());
-
   runApp(Hyde());
 }
 
@@ -20,6 +16,7 @@ class Hyde extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: 초기화 할 곳 다시 생각해보기
     Get.put(HistoryController());
+    Get.put(FavoriteController());
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

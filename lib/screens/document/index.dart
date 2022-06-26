@@ -20,11 +20,11 @@ class DocumentScreen extends StatelessWidget {
     return data;
   }
 
-  Future<dynamic> _getMediaData(String? mediaId) async {
-    var data = await _readJson('assets/data/media.json');
-    var media = data.firstWhere((i) => i['id'] == mediaId);
+  Future<Media> _getMediaData(String? mediaId) async {
+    final data = await _readJson('assets/data/media.json');
+    final find = data.firstWhere((i) => i['id'] == mediaId);
 
-    return media;
+    return Media.fromJson(find);
   }
 
   @override
@@ -34,9 +34,9 @@ class DocumentScreen extends StatelessWidget {
 
     return FutureBuilder(
       future: _getMediaData(documentId),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<Media> snapshot) {
         // data를 아직 받아 오지 못했을 때
-        if (snapshot.hasData == false) {
+        if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
         // error가 발생했을 때
@@ -44,16 +44,7 @@ class DocumentScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
 
-        final media = Media(
-          id: snapshot.data['id'],
-          title: snapshot.data['title'],
-          type: snapshot.data['type'],
-          trailer: snapshot.data['trailer'],
-          status: MediaStatus.values.byName(snapshot.data['status']),
-          tags: List<String>.from(snapshot.data['genres']),
-          bannerImage: snapshot.data['bannerImage'],
-          synopsis: snapshot.data['synopsis'],
-        );
+        final media = snapshot.data!;
 
         return DocumentTemplate(
           media: media,

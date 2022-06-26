@@ -1,71 +1,89 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'media.freezed.dart';
+part 'media.g.dart';
+
+enum MediaType {
+  TVA,
+  OVA,
+  MOVIE,
+}
+
 enum MediaStatus {
+  // 완결
   FINISHED,
+
+  // 방영 중
   RELEASING,
+
+  // 미공개
   UNRELEASED,
+
+  // 방영 취소
   CANCELLED,
+
+  // 방영 중단
   HIATUS,
 }
 
-class Media {
-  static String getStatusName(MediaStatus status) {
-    switch (status) {
-      case MediaStatus.FINISHED:
-        return '완결';
-      case MediaStatus.RELEASING:
-        return '방영중';
-      case MediaStatus.UNRELEASED:
-        return '미공개';
-      case MediaStatus.CANCELLED:
-        return '방영취소';
-      case MediaStatus.HIATUS:
-        return '중단';
-    }
+/// Entity
+@freezed
+class Media with _$Media {
+  const factory Media({
+    // 식별자
+    required String id,
+
+    // 미디어 타입
+    required MediaType type,
+
+    // 미디어 상태
+    required MediaStatus status,
+
+    // 태그 및 관련 정보
+    required List<String?> keywords,
+
+    // 미디어 제목
+    required String title,
+
+    // 미디어 개요
+    String? synopsis,
+
+    // 배너 이미지
+    required String bannerImage,
+
+    // 미리보기 영상
+    String? trailer,
+
+    // 시작 날짜
+    DateTime? startDate,
+
+    // 종료 날짜
+    DateTime? endDate,
+  }) = _Media;
+
+  factory Media.fromJson(Map<String, dynamic> json) {
+    return _$MediaFromJson(json);
   }
+}
 
-  // 식별자
-  final String id;
+/// Value-Object
+@freezed
+class Comment with _$Comment {
+  const factory Comment({
+    // 식별자
+    required String id,
 
-  // 작품 제목
-  final String title;
+    // 저자 이름
+    required String author,
 
-  // 작품 타입 | TVA, MOVIE
-  final String type;
+    // 시청 후 느낀 감정
+    required int emotion,
 
-  // 작품 상태 | 방영중, 방영종료
-  final MediaStatus status;
+    // 글 내용
+    required String content,
+  }) = _Comment;
 
-  // 주요 태그
-  final List<String?> tags;
-
-  // 예고편
-  final String? trailer;
-
-  // 간략한 설명
-  final String? synopsis;
-
-  // 커버 이미지
-  final String? coverImage;
-
-  // 배너 이미지
-  final String bannerImage;
-
-  // 방영 날짜
-  final DateTime? startDate;
-
-  // 끝난 날짜
-  final DateTime? endDate;
-
-  const Media({
-    required this.id,
-    required this.title,
-    required this.type,
-    required this.status,
-    required this.tags,
-    this.trailer,
-    this.synopsis,
-    this.coverImage,
-    required this.bannerImage,
-    this.startDate,
-    this.endDate,
-  });
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return _$CommentFromJson(json);
+  }
 }

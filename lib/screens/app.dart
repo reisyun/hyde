@@ -41,7 +41,7 @@ class App extends StatelessWidget {
       // build
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(FlutterRemix.user_fill),
+          icon: Icon(FlutterRemix.function_fill),
           label: "홈",
         ),
         BottomNavigationBarItem(

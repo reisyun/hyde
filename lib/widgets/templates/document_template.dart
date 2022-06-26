@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:hyde/utils/fade_on_scroll.dart';
@@ -10,8 +9,7 @@ import 'package:hyde/styles/sizes.dart';
 import 'package:hyde/styles/colors.dart';
 
 import 'package:hyde/models/media.dart';
-import 'package:hyde/models/history.dart';
-import 'package:hyde/controllers/history_controller.dart';
+import 'package:hyde/controllers/favorite_controller.dart';
 
 import 'package:hyde/widgets/atoms/icon.dart';
 import 'package:hyde/widgets/atoms/text.dart';
@@ -69,7 +67,7 @@ class DocumentTemplate extends StatelessWidget {
           HydeButton(
             size: ButtonSizes.LARGE,
             icon: FlutterRemix.heart_line,
-            onPressed: () => _handleAddMedia(HistoryStatus.COMPLETED),
+            onPressed: () => _handleAddMedia(),
           ),
           // Share
           HydeButton(
@@ -89,22 +87,21 @@ class DocumentTemplate extends StatelessWidget {
   }
 
   // History.Status에 미디어 추가
-  void _handleAddMedia(HistoryStatus status) {
-    final controller = Get.find<HistoryController>();
+  void _handleAddMedia() {
+    final controller = Get.find<FavoriteController>();
 
     // 미디어 추가
-    controller.add(History(
-      mediaId: media.id,
-      id: const Uuid().v4(),
-      title: media.title,
-      image: media.bannerImage,
-      status: status,
-    ));
+    // controller.add(Favorite(
+    //   id: const Uuid().v4(),
+    //   mediaId: media.id,
+    //   mediaTitle: media.title,
+    //   mediaImage: media.bannerImage,
+    // ));
 
     // 상태 메세지 확인
     Get.snackbar(
       'ADD MEDIA',
-      '${History.getStatusName(status)} 애니에 작품을 추가했어요!!',
+      '보고싶은 애니에 추가했어요',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: BackgroundColors.dep1.withOpacity(0.64),
       colorText: FontColors.primary,
@@ -205,7 +202,11 @@ class DocumentInfo extends StatelessWidget {
         children: [
           _buildSynopsis(media.synopsis),
           const SizedBox(height: 12),
-          _buildKeywords(media.type, media.status, media.tags),
+          _buildKeywords(
+            media.type.name,
+            media.status.name,
+            media.keywords,
+          ),
         ],
       ),
     );
@@ -231,7 +232,7 @@ class DocumentInfo extends StatelessWidget {
   }
 
   /// 작품 태그
-  Widget _buildKeywords(String type, MediaStatus status, List<String?> tags) {
+  Widget _buildKeywords(String type, String status, List<String?> tags) {
     final keywords = tags
         .map((keyword) => HydeChip(
               name: keyword!,
@@ -247,7 +248,7 @@ class DocumentInfo extends StatelessWidget {
     ));
 
     keywords.add(HydeChip(
-      name: Media.getStatusName(status),
+      name: status,
       color: BrandColors.primary,
     ));
 

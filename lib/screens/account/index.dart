@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hyde/models/history.dart';
-import 'package:hyde/controllers/history_controller.dart';
+import 'package:hyde/controllers/favorite_controller.dart';
 import 'package:hyde/widgets/molecules/progress_indicator_with_label.dart';
 import 'package:hyde/widgets/organisms/library_field.dart';
 import 'package:hyde/widgets/organisms/media_list.dart';
@@ -13,14 +12,10 @@ class AccountScreen extends StatelessWidget {
     return AccountTemplate(
       username: 'viichan',
       avatar: 'https://bit.ly/3LP3K2b',
-      content: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.zero,
-        children: [
-          CompletedSection(),
-          FavoriteSection(),
-        ],
-      ),
+      contents: [
+        CompletedSection(),
+        FavoriteSection(),
+      ],
     );
   }
 }
@@ -52,19 +47,16 @@ class FavoriteSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HistoryController>();
+    final controller = Get.find<FavoriteController>();
 
     return LibraryField(
       name: '보고싶은',
       content: Obx(() => MediaList(
-            controller.histories
-                // [1] 감상한 상태가 아닌 미디어를 가져옴
-                .where((item) => item.status != HistoryStatus.COMPLETED)
-                // [2] 그 미디어를 포맷에 맞게 생성
+            controller.favorites
                 .map((item) => MediaItem(
                       id: item.mediaId,
-                      title: item.title,
-                      image: item.image,
+                      title: item.mediaTitle,
+                      image: item.mediaBanner,
                       onPressed: () => _handleNavigateTo(item.mediaId),
                     ))
                 .toList(),
