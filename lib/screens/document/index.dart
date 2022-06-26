@@ -1,27 +1,18 @@
-import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hyde/constants/reaction.dart';
+
 import 'package:hyde/models/media.dart';
+import 'package:hyde/constants/reaction.dart';
+import 'package:hyde/utils/read_json.dart';
 
 import 'package:hyde/widgets/templates/document_template.dart';
-
 import 'package:hyde/screens/document/comment.dart';
 import 'package:hyde/screens/document/media_details.dart';
 import 'package:hyde/screens/document/reaction_details.dart';
 
 class DocumentScreen extends StatelessWidget {
-  // Fetch content from the json file
-  Future<List<dynamic>> _readJson(String source) async {
-    String response = await rootBundle.loadString(source);
-    List<dynamic> data = await json.decode(response);
-
-    return data;
-  }
-
   Future<Media> _getMediaData(String? mediaId) async {
-    final data = await _readJson('assets/data/media.json');
+    final data = await readJson('assets/data/media.json');
     final find = data.firstWhere((i) => i['id'] == mediaId);
 
     return Media.fromJson(find);
