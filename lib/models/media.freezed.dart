@@ -27,7 +27,7 @@ mixin _$Media {
   List<String?> get keywords => throw _privateConstructorUsedError; // 미디어 제목
   String get title => throw _privateConstructorUsedError; // 미디어 개요
   String? get synopsis => throw _privateConstructorUsedError; // 배너 이미지
-  String get bannerImage => throw _privateConstructorUsedError; // 미리보기 영상
+  String get banner => throw _privateConstructorUsedError; // 미리보기 영상
   String? get trailer => throw _privateConstructorUsedError; // 시작 날짜
   DateTime? get startDate => throw _privateConstructorUsedError; // 종료 날짜
   DateTime? get endDate => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $MediaCopyWith<$Res> {
       List<String?> keywords,
       String title,
       String? synopsis,
-      String bannerImage,
+      String banner,
       String? trailer,
       DateTime? startDate,
       DateTime? endDate});
@@ -70,7 +70,7 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
     Object? keywords = freezed,
     Object? title = freezed,
     Object? synopsis = freezed,
-    Object? bannerImage = freezed,
+    Object? banner = freezed,
     Object? trailer = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -100,9 +100,9 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
           ? _value.synopsis
           : synopsis // ignore: cast_nullable_to_non_nullable
               as String?,
-      bannerImage: bannerImage == freezed
-          ? _value.bannerImage
-          : bannerImage // ignore: cast_nullable_to_non_nullable
+      banner: banner == freezed
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
               as String,
       trailer: trailer == freezed
           ? _value.trailer
@@ -132,7 +132,7 @@ abstract class _$$_MediaCopyWith<$Res> implements $MediaCopyWith<$Res> {
       List<String?> keywords,
       String title,
       String? synopsis,
-      String bannerImage,
+      String banner,
       String? trailer,
       DateTime? startDate,
       DateTime? endDate});
@@ -155,7 +155,7 @@ class __$$_MediaCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res>
     Object? keywords = freezed,
     Object? title = freezed,
     Object? synopsis = freezed,
-    Object? bannerImage = freezed,
+    Object? banner = freezed,
     Object? trailer = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -185,9 +185,9 @@ class __$$_MediaCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res>
           ? _value.synopsis
           : synopsis // ignore: cast_nullable_to_non_nullable
               as String?,
-      bannerImage: bannerImage == freezed
-          ? _value.bannerImage
-          : bannerImage // ignore: cast_nullable_to_non_nullable
+      banner: banner == freezed
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
               as String,
       trailer: trailer == freezed
           ? _value.trailer
@@ -215,7 +215,7 @@ class _$_Media implements _Media {
       required final List<String?> keywords,
       required this.title,
       this.synopsis,
-      required this.bannerImage,
+      required this.banner,
       this.trailer,
       this.startDate,
       this.endDate})
@@ -250,7 +250,7 @@ class _$_Media implements _Media {
   final String? synopsis;
 // 배너 이미지
   @override
-  final String bannerImage;
+  final String banner;
 // 미리보기 영상
   @override
   final String? trailer;
@@ -263,7 +263,7 @@ class _$_Media implements _Media {
 
   @override
   String toString() {
-    return 'Media(id: $id, type: $type, status: $status, keywords: $keywords, title: $title, synopsis: $synopsis, bannerImage: $bannerImage, trailer: $trailer, startDate: $startDate, endDate: $endDate)';
+    return 'Media(id: $id, type: $type, status: $status, keywords: $keywords, title: $title, synopsis: $synopsis, banner: $banner, trailer: $trailer, startDate: $startDate, endDate: $endDate)';
   }
 
   @override
@@ -277,8 +277,7 @@ class _$_Media implements _Media {
             const DeepCollectionEquality().equals(other._keywords, _keywords) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.synopsis, synopsis) &&
-            const DeepCollectionEquality()
-                .equals(other.bannerImage, bannerImage) &&
+            const DeepCollectionEquality().equals(other.banner, banner) &&
             const DeepCollectionEquality().equals(other.trailer, trailer) &&
             const DeepCollectionEquality().equals(other.startDate, startDate) &&
             const DeepCollectionEquality().equals(other.endDate, endDate));
@@ -294,7 +293,7 @@ class _$_Media implements _Media {
       const DeepCollectionEquality().hash(_keywords),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(synopsis),
-      const DeepCollectionEquality().hash(bannerImage),
+      const DeepCollectionEquality().hash(banner),
       const DeepCollectionEquality().hash(trailer),
       const DeepCollectionEquality().hash(startDate),
       const DeepCollectionEquality().hash(endDate));
@@ -318,7 +317,7 @@ abstract class _Media implements Media {
       required final List<String?> keywords,
       required final String title,
       final String? synopsis,
-      required final String bannerImage,
+      required final String banner,
       final String? trailer,
       final DateTime? startDate,
       final DateTime? endDate}) = _$_Media;
@@ -338,7 +337,7 @@ abstract class _Media implements Media {
   @override // 미디어 개요
   String? get synopsis => throw _privateConstructorUsedError;
   @override // 배너 이미지
-  String get bannerImage => throw _privateConstructorUsedError;
+  String get banner => throw _privateConstructorUsedError;
   @override // 미리보기 영상
   String? get trailer => throw _privateConstructorUsedError;
   @override // 시작 날짜

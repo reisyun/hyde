@@ -8,7 +8,7 @@ part 'favorite.g.dart';
 class Favorite with _$Favorite {
   const factory Favorite({
     // 식별자
-    required String id,
+    String? id,
 
     // 사용자 식별
     required String userId,
@@ -26,7 +26,5 @@ class Favorite with _$Favorite {
     DateTime? addedAt,
   }) = _Favorite;
 
-  factory Favorite.fromJson(Map<String, dynamic> json) {
-    return _$FavoriteFromJson(json);
-  }
+  factory Favorite.fromJson(json) => _$FavoriteFromJson(json);
 }

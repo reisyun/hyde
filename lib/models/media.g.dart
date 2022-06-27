@@ -14,7 +14,7 @@ _$_Media _$$_MediaFromJson(Map<String, dynamic> json) => _$_Media(
           (json['keywords'] as List<dynamic>).map((e) => e as String?).toList(),
       title: json['title'] as String,
       synopsis: json['synopsis'] as String?,
-      bannerImage: json['bannerImage'] as String,
+      banner: json['banner'] as String,
       trailer: json['trailer'] as String?,
       startDate: json['startDate'] == null
           ? null
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_MediaToJson(_$_Media instance) => <String, dynamic>{
       'keywords': instance.keywords,
       'title': instance.title,
       'synopsis': instance.synopsis,
-      'bannerImage': instance.bannerImage,
+      'banner': instance.banner,
       'trailer': instance.trailer,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),

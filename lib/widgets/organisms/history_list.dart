@@ -20,9 +20,9 @@ class HistoryList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         var item = items[index];
         return HistoryCardItem(
+          emotion: item.emotion,
           title: item.title,
           subtitle: item.subtitle,
-          emotion: item.emotion,
           image: item.image,
           review: item.review,
           onPressed: item.onPressed,

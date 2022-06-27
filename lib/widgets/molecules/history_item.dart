@@ -92,6 +92,7 @@ class HistoryCardItem extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 12),
                   child: HydeText(
                     review!,
+                    height: 1.5,
                     maxLines: 5,
                     color: FontColors.primary,
                   ),

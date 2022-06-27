@@ -8,12 +8,12 @@ part of 'comment.dart';
 
 _$_Comment _$$_CommentFromJson(Map<String, dynamic> json) => _$_Comment(
       id: json['id'] as String,
-      media: Media.fromJson(json['media'] as Map<String, dynamic>),
-      author: Author.fromJson(json['author'] as Map<String, dynamic>),
+      media: Media.fromJson(json['media']),
+      author: Author.fromJson(json['author']),
       emotion: json['emotion'] as int,
       content: json['content'] as String?,
       likes: (json['likes'] as List<dynamic>?)
-          ?.map((e) => Like.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Like.fromJson(e))
           .toList(),
       createdAt: json['createdAt'] == null
           ? null

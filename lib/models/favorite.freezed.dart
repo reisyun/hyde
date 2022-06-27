@@ -21,7 +21,7 @@ Favorite _$FavoriteFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Favorite {
 // 식별자
-  String get id => throw _privateConstructorUsedError; // 사용자 식별
+  String? get id => throw _privateConstructorUsedError; // 사용자 식별
   String get userId => throw _privateConstructorUsedError; // 미디어 식별
   String get mediaId => throw _privateConstructorUsedError; // 미디어 제목
   String get mediaTitle => throw _privateConstructorUsedError; // 미디어 이미지
@@ -39,7 +39,7 @@ abstract class $FavoriteCopyWith<$Res> {
   factory $FavoriteCopyWith(Favorite value, $Res Function(Favorite) then) =
       _$FavoriteCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {String? id,
       String userId,
       String mediaId,
       String mediaTitle,
@@ -68,7 +68,7 @@ class _$FavoriteCopyWithImpl<$Res> implements $FavoriteCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -100,7 +100,7 @@ abstract class _$$_FavoriteCopyWith<$Res> implements $FavoriteCopyWith<$Res> {
       __$$_FavoriteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {String? id,
       String userId,
       String mediaId,
       String mediaTitle,
@@ -131,7 +131,7 @@ class __$$_FavoriteCopyWithImpl<$Res> extends _$FavoriteCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ class __$$_FavoriteCopyWithImpl<$Res> extends _$FavoriteCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Favorite implements _Favorite {
   const _$_Favorite(
-      {required this.id,
+      {this.id,
       required this.userId,
       required this.mediaId,
       required this.mediaTitle,
@@ -172,7 +172,7 @@ class _$_Favorite implements _Favorite {
 
 // 식별자
   @override
-  final String id;
+  final String? id;
 // 사용자 식별
   @override
   final String userId;
@@ -233,7 +233,7 @@ class _$_Favorite implements _Favorite {
 
 abstract class _Favorite implements Favorite {
   const factory _Favorite(
-      {required final String id,
+      {final String? id,
       required final String userId,
       required final String mediaId,
       required final String mediaTitle,
@@ -243,7 +243,7 @@ abstract class _Favorite implements Favorite {
   factory _Favorite.fromJson(Map<String, dynamic> json) = _$_Favorite.fromJson;
 
   @override // 식별자
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @override // 사용자 식별
   String get userId => throw _privateConstructorUsedError;
   @override // 미디어 식별

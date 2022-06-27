@@ -49,7 +49,7 @@ class Media with _$Media {
     String? synopsis,
 
     // 배너 이미지
-    required String bannerImage,
+    required String banner,
 
     // 미리보기 영상
     String? trailer,
@@ -61,9 +61,7 @@ class Media with _$Media {
     DateTime? endDate,
   }) = _Media;
 
-  factory Media.fromJson(Map<String, dynamic> json) {
-    return _$MediaFromJson(json);
-  }
+  factory Media.fromJson(json) => _$MediaFromJson(json);
 }
 
 /// Value-Object
@@ -83,7 +81,5 @@ class Comment with _$Comment {
     required String content,
   }) = _Comment;
 
-  factory Comment.fromJson(Map<String, dynamic> json) {
-    return _$CommentFromJson(json);
-  }
+  factory Comment.fromJson(json) => _$CommentFromJson(json);
 }

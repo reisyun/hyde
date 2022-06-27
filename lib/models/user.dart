@@ -23,7 +23,5 @@ class User with _$User {
     DateTime? birthdate,
   }) = _User;
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return _$UserFromJson(json);
-  }
+  factory User.fromJson(json) => _$UserFromJson(json);
 }

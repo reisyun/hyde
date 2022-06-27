@@ -32,9 +32,7 @@ class Comment with _$Comment {
     DateTime? editedAt,
   }) = _Comment;
 
-  factory Comment.fromJson(Map<String, dynamic> json) {
-    return _$CommentFromJson(json);
-  }
+  factory Comment.fromJson(json) => _$CommentFromJson(json);
 }
 
 /// Value-Object
@@ -51,9 +49,7 @@ class Media with _$Media {
     required String banner,
   }) = _Media;
 
-  factory Media.fromJson(Map<String, dynamic> json) {
-    return _$MediaFromJson(json);
-  }
+  factory Media.fromJson(json) => _$MediaFromJson(json);
 }
 
 /// Value-Object
@@ -70,9 +66,7 @@ class Author with _$Author {
     String? avatar,
   }) = _Author;
 
-  factory Author.fromJson(Map<String, dynamic> json) {
-    return _$AuthorFromJson(json);
-  }
+  factory Author.fromJson(json) => _$AuthorFromJson(json);
 }
 
 /// Value-Object
@@ -86,7 +80,5 @@ class Like with _$Like {
     required DateTime createdAt,
   }) = _Like;
 
-  factory Like.fromJson(Map<String, dynamic> json) {
-    return _$LikeFromJson(json);
-  }
+  factory Like.fromJson(json) => _$LikeFromJson(json);
 }

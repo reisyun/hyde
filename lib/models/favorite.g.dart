@@ -7,7 +7,7 @@ part of 'favorite.dart';
 // **************************************************************************
 
 _$_Favorite _$$_FavoriteFromJson(Map<String, dynamic> json) => _$_Favorite(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       userId: json['userId'] as String,
       mediaId: json['mediaId'] as String,
       mediaTitle: json['mediaTitle'] as String,

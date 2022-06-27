@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hyde/models/favorite.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:hyde/utils/fade_on_scroll.dart';
@@ -35,7 +36,6 @@ class DocumentTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _buildBottomAppBar(),
       backgroundColor: BackgroundColors.dep2,
       body: CustomScrollView(
         controller: scrollController,
@@ -49,63 +49,59 @@ class DocumentTemplate extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: _buildBottomAppBar(),
     );
   }
 
-  // FAB을 제외한 Hide/Show Animation 구현하기
+  // TODO: FAB을 제외한 Hide/Show Animation 구현하기
   // 관련 검색어 How To Hide Bottom Navigation Bar On Scroll
   Widget _buildBottomAppBar() {
-    return BottomAppBar(
-      elevation: 0,
-      child: Container(
-        height: 80,
-        padding: const EdgeInsets.only(right: 16),
-        color: BackgroundColors.dep1,
-        child: Row(children: [
-          // Add media to favorite
-          // TODO: 데이터베이스 스키마 설계 다시 해봅시다!
-          HydeButton(
-            size: ButtonSizes.LARGE,
-            icon: FlutterRemix.heart_line,
-            onPressed: () => _handleAddMedia(),
-          ),
-          // Share
-          HydeButton(
-            size: ButtonSizes.LARGE,
-            icon: FlutterRemix.share_circle_line,
-          ),
-          const Spacer(),
-          HydeFAB(
-            icon: FlutterRemix.add_fill,
-            onPressed: () => showCustomBottomSheet(
-              HydeBottomSheet(child: ReactionList()),
+    return GetX<FavoriteController>(
+        init: FavoriteController(),
+        builder: (_) {
+          final favorite = _.find(mediaId: media.id);
+
+          return BottomAppBar(
+            elevation: 0,
+            child: Container(
+              height: 80,
+              padding: const EdgeInsets.only(right: 16),
+              color: BackgroundColors.dep1,
+              child: Row(children: [
+                // Favorite
+                HydeButton(
+                  size: ButtonSizes.LARGE,
+                  icon: favorite != null
+                      ? FlutterRemix.heart_3_fill
+                      : FlutterRemix.heart_3_line,
+                  color: favorite != null
+                      ? CommonColors.point_pink
+                      : FontColors.secondary,
+
+                  // '보고싶은'에 추가 또는 제거
+                  onPressed: () => _.toggle(Favorite(
+                    userId: 'u1',
+                    mediaId: media.id,
+                    mediaTitle: media.title,
+                    mediaBanner: media.banner,
+                  )),
+                ),
+                // Share
+                HydeButton(
+                  size: ButtonSizes.LARGE,
+                  icon: FlutterRemix.share_circle_line,
+                ),
+                const Spacer(),
+                HydeFAB(
+                  icon: FlutterRemix.add_fill,
+                  onPressed: () => showCustomBottomSheet(
+                    HydeBottomSheet(child: ReactionList()),
+                  ),
+                ),
+              ]),
             ),
-          ),
-        ]),
-      ),
-    );
-  }
-
-  // History.Status에 미디어 추가
-  void _handleAddMedia() {
-    final controller = Get.find<FavoriteController>();
-
-    // 미디어 추가
-    // controller.add(Favorite(
-    //   id: const Uuid().v4(),
-    //   mediaId: media.id,
-    //   mediaTitle: media.title,
-    //   mediaImage: media.bannerImage,
-    // ));
-
-    // 상태 메세지 확인
-    Get.snackbar(
-      'ADD MEDIA',
-      '보고싶은 애니에 추가했어요',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: BackgroundColors.dep1.withOpacity(0.64),
-      colorText: FontColors.primary,
-    );
+          );
+        });
   }
 }
 
@@ -140,7 +136,7 @@ class DocumentAppBar extends StatelessWidget {
         expandedTitleScale: 1,
         background: _buildBackground(
           title: media.title,
-          image: media.bannerImage,
+          image: media.banner,
           trailer: media.trailer,
         ),
       ),
