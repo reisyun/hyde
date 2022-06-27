@@ -7,20 +7,22 @@ import 'package:hyde/screens/account/index.dart';
 import 'package:hyde/screens/discover/index.dart';
 
 class App extends StatelessWidget {
-  final controller = Get.put(TabPageController());
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => IndexedStack(
-            index: controller.tabIndex.value,
-            children: [
-              AccountScreen(),
-              DiscoverScreen(),
-            ],
-          )),
-      bottomNavigationBar: Obx(() => _buildBottomNavigation(controller)),
-    );
+    return GetBuilder<TabPageController>(
+        init: TabPageController(),
+        builder: (controller) {
+          return Scaffold(
+            body: IndexedStack(
+              index: controller.tabIndex,
+              children: [
+                AccountScreen(),
+                DiscoverScreen(),
+              ],
+            ),
+            bottomNavigationBar: _buildBottomNavigation(controller),
+          );
+        });
   }
 
   Widget _buildBottomNavigation(TabPageController controller) {
@@ -35,7 +37,7 @@ class App extends StatelessWidget {
       iconSize: 24,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      currentIndex: controller.tabIndex.value,
+      currentIndex: controller.tabIndex,
       onTap: controller.changeTabIndex,
 
       // build

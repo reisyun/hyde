@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
 class TabPageController extends GetxController {
-  final tabIndex = 0.obs;
+  int tabIndex = 0;
 
   void changeTabIndex(int index) {
-    tabIndex.value = index;
+    tabIndex = index;
     update();
   }
 }
