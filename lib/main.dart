@@ -14,10 +14,6 @@ void main() async {
 class Hyde extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: 초기화 할 곳 다시 생각해보기
-    Get.put(HistoryController());
-    Get.put(FavoriteController());
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
@@ -36,20 +32,40 @@ class Hyde extends StatelessWidget {
       ),
       initialRoute: '/@:username',
       getPages: [
-        _getScreen('/@:username', App()),
-        _getScreen('/@:username/completed', CompletedScreen()),
-        _getScreen('/document/:id', DocumentScreen()),
+        _getScreen(
+          path: '/@:username',
+          screen: App(),
+          binding: BindingsBuilder(() {
+            Get.put(FavoriteController());
+          }),
+        ),
+        _getScreen(
+          path: '/@:username/completed',
+          screen: CompletedScreen(),
+          binding: BindingsBuilder(() {
+            Get.put(HistoryController());
+          }),
+        ),
+        _getScreen(
+          path: '/document/:id',
+          screen: DocumentScreen(),
+        ),
       ],
     );
   }
 }
 
-GetPage _getScreen(String path, Widget screen) {
+GetPage _getScreen({
+  required String path,
+  required Widget screen,
+  Bindings? binding,
+}) {
   return GetPage(
     name: path,
     page: () => screen,
     transition: Transition.topLevel,
     transitionDuration: const Duration(milliseconds: 600),
+    binding: binding,
   );
 }
 

@@ -11,7 +11,7 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AccountTemplate(
       username: 'viichan',
-      avatar: 'https://bit.ly/3LP3K2b',
+      avatar: 'https://bit.ly/3HW7zSY',
       contents: [
         CompletedSection(),
         FavoriteSection(),
